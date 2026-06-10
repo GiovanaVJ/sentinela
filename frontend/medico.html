@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+    <h2>Painel Médico</h2>
+    <div id="pacientes"></div>
+
+    <br>
+
+    <h3>Consulta</h3>
+    <input id="paciente" placeholder="Paciente">
+    <input id="diagnostico" placeholder="Diagnóstico">
+    <input id="medicacoes" placeholder="Medicações">
+    <input id="observacoes" placeholder="Observações">
+    <button onclick="salvarConsulta()">Salvar Consulta</button>
+    </div>
+
+    <script>
+        function carregar(){
+            fetch("/triagens")
+            .then(r => r.json())
+            .then(data => {
+                const div = document.getElementById("triagens");
+                div.innerHTML = "";
+                data.forEach(t => {
+                    div.innerHTML +=`
+                    <div class="card">
+                        <h3>${t.nome}</h3>
+
+                        <p>
+                            <b>Sintoma:</b>
+                            ${t.sintoma || t.sintomas}
+                        </p>
+                            
+                        <p>
+                            <b>Temperatura:</b>
+                            ${t.temperatura || t.temp}°C
+                        </p>
+                        
+                        <p>
+                            <b>Alergia:</b>
+                            ${t.alergia || t.alergias}
+                        </p>
+                        
+                        <p>
+                            <span class="${t.risco}">
+                                ${t.risco}
+                            </span>
+                        </p>
+                        
+                        <p>
+                            <b>Alergias:</b>
+                            ${t.alergia || "Nenhuma"}
+                        </p>
+
+                        <p>
+                            <b>Observações:</b>
+                            ${t.observacao || "Nenhuma"}
+                        </p>
+                        
+                        <button onclick='selecionar (
+                        "${t.nome}"
+                        "${t.alergia}"
+                        )'
+                        >
+                        Atender
+                        </button>
+
+                        </div>
+                        `;
+                });
+            });
+        }
+
+        function selecionar(nome, alergia) {
+            document.getElementById("paciente").value = nome;
+
+            if(
+                alergia && alergia !== "Nenhuma"
+            ) {
+                alert(
+                    "Paciente possui alergia!"
+                );
+
+            }
+            
+        }
+
+        function salvar(){
+
+            fetch("/consulta", {
+                method: "POST",
+
+                headers:{
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    paciente: paciente.value,
+
+                    diagnostico: diagnostico.value,
+
+                    medicacao: medicacao.value,
+
+                    obs: obs.value
+
+
+                })
+            });
+
+            alert("Consulta salva!");
+        }
+
+        carregar();
+        
+    </script>>
+    
+</body>
+</html>

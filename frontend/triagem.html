@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+
+        <h2>Triagem hospitalar</h2>
+
+        <input id="nome" placeholder="nome">
+
+        <select id="sintoma">
+
+            <option value="">selecione</option>
+            <option value="dor_leve">dor leve</option>
+            <option value="resfriado">resfriado</option>
+            <option value="dor_de_cabeça">dor de cabeça</option>
+            <option value="vomito">vomito</option>
+            <option value="diarreia">diarreia</option>
+            <option value="avc">suspeita de avc</option>
+            <option value="infarto">suspeita de infarto</option>
+            <option value="hemorragia">hemorragia</option>
+            <option value="fraqueza">fraqueza</option>
+            <option value="dor_moderada">dor moderada</option>
+            <option value="nausea">nausêa</option>
+        </select>
+
+        <input id="temp" type="number" placeholder="temperatura">
+
+        <input id="alergia" placeholder="alergias">
+
+        <textarea id="obs" placeholder="observações"></textarea>
+
+        <div id="resultado"></div>
+
+        <button onclick="salvar()">
+            Salvar triagem
+        </button>
+
+    </div>
+
+    <script>
+
+        function classificarrisco(sintoma, temperatura){
+
+            const vermelhos = [
+                "infarto",
+                "avc",
+                "hemorragia",
+                "dor_moderada"
+        ];
+
+            const amarelos = [
+                "nausea",
+                "fraqueza",
+                "dor_fraca"
+        ];
+
+            if(temperatura >= 39) {
+                return "vermelho";
+            }
+
+            if(vermelhos.includes(sintoma)) {
+                return "vermelho";
+
+            if(amarelos.includes(sintoma)) {
+            return "amarelo";
+            }
+
+            return "verde";
+        }
+
+        function salvar(){
+            const nome = 
+            document.getElementById("nome").value;
+
+            const sintoma = 
+            document.getElementById("sintoma").value;
+
+            const temperatura = 
+            Number(document.getElementById("temperatura").value);
+
+            const alergia = 
+            document.getElementById("alergia").value;
+
+            const observacao = 
+            document.getElementById("observacao").value;
+
+            const risco = 
+            classificarrisco(sintoma, temperatura);
+
+            fetch("http://localhost:3000/triagem", {
+
+                method:"POST",
+
+                headers:{
+                    "content-Type":"application/json"
+                },
+
+                body: JSON.stringify({
+
+                    nome,
+                    sintoma,
+                    temperatura,
+                    alergia,
+                    observacao,
+                    risco
+
+                })
+            })
+
+            .then(r => r.json())
+
+            .then(data => {
+
+                const resultado =
+                document.getElementById("resultado");
+
+                resultado.className = risco;
+
+                resultado.innerHTML =
+                "classificacao: " +
+                risco.toUpperCase();
+
+                alert("triagem salva");
+            });
+            
+        }
+    }
+
+
+    </script>
+
+    
+</body>
+</html>

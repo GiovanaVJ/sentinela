@@ -1,0 +1,29 @@
+{
+    "usuarios": [
+    {
+        "usuario": "triagem",
+        "senha": "123",
+        "tipo": "triagem"
+    },
+    {
+        "usuario": "medico",
+        "senha": "123",
+        "tipo": "medico"
+    },
+    {
+        "usuario": "atendimento",
+        "senha": "123",
+        "tipo": "atendimento"
+    }
+    ],
+    "pacientes": [
+        {
+            "id": 145657568563,
+            "nome": "João Silva",
+            "cpf": "123.456.789-00",
+            "tipo": "particular",
+            "status": "aguardando triagem",
+            "createdAt": "2025-04-05T10:30:00Z"
+        }
+    ]
+}

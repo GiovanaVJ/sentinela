@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>sistema hospitalar</h2>
+        <input id="usuario" type="name" placeholder="usuario">
+        <input id="senha" type="password" placeholder="senha">
+        <button onclick="login()">Entrar</button>
+    </div>
+
+    <script>
+        function login(){
+            fetch("http://localhost:3080/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    usuario: usuario.value,
+                    senha: senha.value
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.tipo === "atendimento") location.href = "atendimento.html";
+                if(data.tipo === "triagem") location.href = "triagem.html";
+                if(data.tipo === "medico") location.href = "medico.html"
+                
+            });
+        }
+     
+    </script>
+        
+</body>
+</html>
+    
