@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Alta Médica</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --success: #16a34a;
+      --success-dark: #15803d;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      padding: 40px 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      border-top: 5px solid var(--primary);
+    }
+
+    .header-doc {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 20px;
+    }
+
+    h2 {
+      color: var(--text-main);
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 15px;
+      color: var(--text-main);
+      background-color: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      height: 110px;
+      line-height: 1.5;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    button {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .btn-salvar {
+      background-color: var(--primary);
+      color: white;
+    }
+    .btn-salvar:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-pdf {
+      background-color: var(--success);
+      color: white;
+    }
+    .btn-pdf:hover {
+      background-color: var(--success-dark);
+    }
+
+    /* Estilização refinada para a Impressão / PDF */
+    @media print {
+      body {
+        background-color: #ffffff;
+        padding: 0;
+        color: #000000;
+      }
+      .container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+        border-top: none;
+      }
+      .header-doc {
+        border-bottom: 2px solid #000;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+      }
+      h2 {
+        font-size: 22px;
+        color: #000;
+      }
+      .subtitle {
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 18px;
+        page-break-inside: avoid;
+      }
+      label {
+        color: #000;
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+      .btn-container {
+        display: none; /* Oculta os botões no documento final */
+      }
+      input, textarea, select {
+        border: none;
+        border-bottom: 1px solid #333;
+        border-radius: 0;
+        background: transparent;
+        padding: 6px 0;
+        font-size: 14px;
+        color: #000;
+      }
+      textarea {
+        height: auto;
+        min-height: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-doc">
+    <h2>📋 Termo de Alta Médica</h2>
+    <p class="subtitle">Documento oficial de encerramento de atendimento hospitalar/ambulatorial</p>
+  </div>
+
+  <form id="formAlta" onsubmit="event.preventDefault();">
+    <div class="form-group">
+      <label for="paciente">Nome do Paciente</label>
+      <input type="text" id="paciente" placeholder="Nome completo do paciente">
+    </div>
+
+    <div class="form-group">
+      <label for="medico">Médico Responsável</label>
+      <input type="text" id="medico" placeholder="Nome do médico e CRM (Ex: Dr. Carlos Silva - CRM 12345)">
+    </div>
+
+    <div class="form-group">
+      <label for="cid">CID / Diagnóstico de Saída</label>
+      <input type="text" id="cid" placeholder="Ex: J06.9 - Infecção das vias aéreas superiores">
+    </div>
+
+    <div class="form-group">
+      <label for="recomendacoes">Orientações e Recomendações</label>
+      <textarea id="recomendacoes" placeholder="Cuidados em casa, repouso necessário, restrições alimentares e orientações gerais..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="medicamentosReceita">Medicamentos de Alta</label>
+      <textarea id="medicamentosReceita" placeholder="Relação de medicamentos prescritos, dosagens e horários recomendados..."></textarea>
+    </div>
+
+    <div class="btn-container">
+      <button type="button" class="btn-salvar" onclick="salvarAlta()">
+        💾 Salvar Dados
+      </button>
+      <button type="button" class="btn-pdf" onclick="gerarPDF()">
+        🖨️ Gerar PDF / Imprimir
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pacienteParam = urlParams.get('paciente');
+    if (pacienteParam) {
+      document.getElementById('paciente').value = pacienteParam;
+    }
+  };
+
+  function salvarAlta() {
+    const paciente = document.getElementById('paciente').value;
+    if (!paciente) {
+      alert('Por favor, preencha o nome do paciente.');
+      return;
+    }
+    alert('Dados de alta salvos com sucesso!');
+  }
+
+  function gerarPDF() {
+    const paciente = document.getElementById('paciente').value;
+    if (!paciente) {
+      alert('Preencha ao menos o nome do paciente antes de gerar o PDF.');
+      return;
+    }
+    window.print();
+  }
+</script>
+
+</body>
+</html>
