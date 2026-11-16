@@ -1,0 +1,183 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    color: #333;
+}
+
+.topo {
+    background-color: #007BFF;
+    color: white;
+    padding: 22px 5%;
+}
+
+.topo h1 {
+    margin: 0;
+}
+
+.topo p {
+    margin-bottom: 0;
+}
+
+.container {
+    width: 95%;
+    max-width: 1300px;
+    margin: 25px auto;
+}
+
+.resumo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card-resumo {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.card-resumo span {
+    color: #666;
+}
+
+.card-resumo h2 {
+    color: #007BFF;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.painel {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.painel h2 {
+    margin-top: 0;
+    color: #007BFF;
+}
+
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.tabela-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    min-width: 750px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #007BFF;
+    color: white;
+}
+
+tr:hover {
+    background: #f5f8fc;
+}
+
+.status-ok {
+    background: #d4edda;
+    color: #155724;
+    padding: 6px 9px;
+    border-radius: 6px;
+}
+
+.status-baixo {
+    background: #fff3cd;
+    color: #856404;
+    padding: 6px 9px;
+    border-radius: 6px;
+}
+
+.status-zero {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 6px 9px;
+    border-radius: 6px;
+}
+
+.btn-excluir {
+    background: #dc3545;
+    padding: 8px;
+    width: auto;
+    margin: 0;
+}
+
+.btn-editar {
+    background: #17a2b8;
+    padding: 8px;
+    width: auto;
+    margin: 0 5px 0 0;
+}
+
+.acoes {
+    display: flex;
+    gap: 5px;
+}
+
+@media (max-width: 800px) {
+    .resumo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .resumo {
+        grid-template-columns: 1fr;
+    }
+
+    .painel {
+        padding: 15px;
+    }
+
+    .topo h1 {
+        font-size: 22px;
+    }
+}
