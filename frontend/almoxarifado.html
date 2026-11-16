@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almoxarifado Hospitalar</title>
+    <link rel="stylesheet" href="css/almoxarifado.css">
+</head>
+<body>
+
+<header class="topo">
+    <div>
+        <h1>🏥 Almoxarifado Hospitalar</h1>
+        <p>Controle de materiais e estoque</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="resumo">
+        <div class="card-resumo">
+            <span>Produtos cadastrados</span>
+            <h2 id="totalProdutos">0</h2>
+        </div>
+
+        <div class="card-resumo">
+            <span>Itens em estoque</span>
+            <h2 id="totalItens">0</h2>
+        </div>
+
+        <div class="card-resumo">
+            <span>Estoque baixo</span>
+            <h2 id="estoqueBaixo">0</h2>
+        </div>
+
+        <div class="card-resumo">
+            <span>Movimentações</span>
+            <h2 id="totalMovimentacoes">0</h2>
+        </div>
+    </section>
+
+    <section class="painel">
+        <h2>Cadastrar material</h2>
+
+        <form id="formProduto">
+
+            <input type="text" id="nome"
+                placeholder="Nome do material" required>
+
+            <input type="text" id="codigo"
+                placeholder="Código do produto" required>
+
+            <select id="categoria" required>
+                <option value="">Selecione a categoria</option>
+                <option value="Medicamentos">Medicamentos</option>
+                <option value="Materiais hospitalares">Materiais hospitalares</option>
+                <option value="Equipamentos">Equipamentos</option>
+                <option value="Higiene e limpeza">Higiene e limpeza</option>
+                <option value="EPIs">EPIs</option>
+                <option value="Outros">Outros</option>
+            </select>
+
+            <input type="text" id="unidade"
+                placeholder="Unidade (un, caixa, pacote...)" required>
+
+            <input type="number" id="quantidade"
+                placeholder="Quantidade inicial" min="0" required>
+
+            <input type="number" id="minimo"
+                placeholder="Estoque mínimo" min="0" required>
+
+            <button type="submit">Cadastrar material</button>
+
+        </form>
+    </section>
+
+    <section class="painel">
+        <h2>Movimentação de estoque</h2>
+
+        <form id="formMovimentacao">
+
+            <select id="produtoMovimento" required>
+                <option value="">Selecione um produto</option>
+            </select>
+
+            <select id="tipoMovimento" required>
+                <option value="">Tipo de movimentação</option>
+                <option value="Entrada">Entrada</option>
+                <option value="Saída">Saída</option>
+            </select>
+
+            <input type="number" id="quantidadeMovimento"
+                placeholder="Quantidade" min="1" required>
+
+            <input type="text" id="responsavel"
+                placeholder="Responsável pela movimentação" required>
+
+            <textarea id="observacao"
+                placeholder="Observações (opcional)"></textarea>
+
+            <button type="submit">Registrar movimentação</button>
+
+        </form>
+    </section>
+
+    <section class="painel">
+        <h2>Estoque de materiais</h2>
+
+        <input type="text" id="pesquisa"
+            placeholder="Pesquisar material...">
+
+        <div class="tabela-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Categoria</th>
+                        <th>Quantidade</th>
+                        <th>Mínimo</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody id="listaProdutos"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="painel">
+        <h2>Histórico de movimentações</h2>
+
+        <div class="tabela-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Produto</th>
+                        <th>Tipo</th>
+                        <th>Quantidade</th>
+                        <th>Responsável</th>
+                        <th>Observação</th>
+                    </tr>
+                </thead>
+
+                <tbody id="historico"></tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script src="backend/almoxarifado.js"></script>
+</body>
+</html>
