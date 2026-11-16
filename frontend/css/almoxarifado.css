@@ -1,82 +1,194 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Nunito', Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 10%, #b8f4ff 0%, transparent 35%),
+        radial-gradient(circle at 90% 90%, #a8f5d0 0%, transparent 35%),
+        linear-gradient(135deg, #e2faff, #edfff6, #d9f1ff);
+
+    background-attachment: fixed;
     margin: 0;
-    color: #333;
+    color: #23516a;
 }
 
+/* TOPO */
+
 .topo {
-    background-color: #007BFF;
+    background:
+        linear-gradient(120deg, #24bce5, #258fe0, #38c9c4);
+
     color: white;
-    padding: 22px 5%;
+    padding: 25px 5%;
+
+    box-shadow:
+        0 5px 20px rgba(35, 155, 195, 0.2),
+        inset 0 -3px 8px rgba(0, 90, 150, 0.1);
+
+    border-bottom: 1px solid rgba(255,255,255,0.5);
 }
 
 .topo h1 {
     margin: 0;
+    font-size: 28px;
+    font-weight: 900;
+    text-shadow: 0 2px 5px rgba(0, 80, 130, 0.15);
 }
 
 .topo p {
     margin-bottom: 0;
+    color: #e4faff;
+    font-weight: 600;
 }
+
+/* CONTAINER */
 
 .container {
     width: 95%;
     max-width: 1300px;
-    margin: 25px auto;
+    margin: 30px auto;
 }
+
+/* RESUMO */
 
 .resumo {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 18px;
+    margin-bottom: 25px;
 }
 
 .card-resumo {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    padding: 22px;
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.95);
+
+    box-shadow:
+        0 7px 22px rgba(45, 155, 190, 0.12),
+        inset 0 2px 5px rgba(255,255,255,0.9);
+
+    transition: all 0.25s ease;
+}
+
+.card-resumo::after {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    right: -35px;
+    top: -40px;
+
+    background: radial-gradient(
+        circle,
+        rgba(100, 225, 255, 0.25),
+        transparent 70%
+    );
+
+    pointer-events: none;
+}
+
+.card-resumo:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 28px rgba(45, 155, 190, 0.18);
 }
 
 .card-resumo span {
-    color: #666;
+    color: #6593a3;
+    font-weight: 700;
+    font-size: 14px;
 }
 
 .card-resumo h2 {
-    color: #007BFF;
-    font-size: 30px;
+    color: #169fd3;
+    font-size: 32px;
+    font-weight: 900;
     margin-bottom: 0;
 }
 
+/* PAINÉIS */
+
 .painel {
-    background: white;
-    padding: 22px;
-    border-radius: 12px;
-    margin-bottom: 22px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+
+    border: 1px solid rgba(255,255,255,0.95);
+
+    box-shadow:
+        0 7px 25px rgba(45, 155, 190, 0.12),
+        inset 0 2px 5px rgba(255,255,255,0.9);
 }
 
 .painel h2 {
     margin-top: 0;
-    color: #007BFF;
+    color: #159dcc;
+    font-weight: 900;
 }
+
+/* CAMPOS */
 
 input,
 select,
 textarea,
 button {
     width: 100%;
-    padding: 12px;
+    padding: 13px 15px;
     margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+
+    border: 1px solid rgba(105, 190, 210, 0.35);
+    border-radius: 12px;
+
+    font-family: inherit;
     font-size: 15px;
+
+    transition: all 0.25s ease;
+}
+
+input,
+select,
+textarea {
+    background: rgba(255,255,255,0.85);
+    color: #23516a;
+
+    outline: none;
+
+    box-shadow: inset 0 2px 5px rgba(70,160,190,0.06);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #37c6e8;
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(55,198,232,0.15),
+        0 4px 12px rgba(55,198,232,0.12);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #91b7c3;
 }
 
 textarea {
@@ -84,83 +196,193 @@ textarea {
     resize: vertical;
 }
 
+/* BOTÕES */
+
 button {
-    background: #007BFF;
+    background: linear-gradient(
+        135deg,
+        #37c9ec,
+        #26a8df,
+        #368be9
+    );
+
     color: white;
     border: none;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 800;
+
+    box-shadow:
+        0 5px 14px rgba(35,163,215,0.22),
+        inset 0 2px 3px rgba(255,255,255,0.4);
 }
 
 button:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #42d8f5, #269be0);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(35,163,215,0.3);
 }
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* TABELA */
 
 .tabela-container {
     overflow-x: auto;
+    border-radius: 14px;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+
     margin-top: 15px;
     min-width: 750px;
+
+    overflow: hidden;
+    border-radius: 14px;
 }
 
 th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+    padding: 14px;
+    border-bottom: 1px solid #e0f1f5;
     text-align: left;
 }
 
 th {
-    background: #007BFF;
+    background: linear-gradient(135deg, #28bce5, #278fdb);
     color: white;
+
+    font-weight: 800;
+    white-space: nowrap;
 }
 
-tr:hover {
-    background: #f5f8fc;
+td {
+    color: #426d7e;
+    font-weight: 600;
+    background: rgba(255,255,255,0.55);
 }
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: #e9faff;
+}
+
+/* STATUS */
 
 .status-ok {
-    background: #d4edda;
-    color: #155724;
-    padding: 6px 9px;
-    border-radius: 6px;
+    display: inline-block;
+
+    background: linear-gradient(135deg, #45df9b, #20bd78);
+    color: white;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow: 0 3px 10px rgba(32,189,120,0.2);
 }
 
 .status-baixo {
-    background: #fff3cd;
-    color: #856404;
-    padding: 6px 9px;
-    border-radius: 6px;
+    display: inline-block;
+
+    background: linear-gradient(135deg, #ffe778, #ffc83d);
+    color: #765600;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow: 0 3px 10px rgba(255,200,61,0.2);
 }
 
 .status-zero {
-    background: #f8d7da;
-    color: #721c24;
-    padding: 6px 9px;
-    border-radius: 6px;
+    display: inline-block;
+
+    background: linear-gradient(135deg, #ff8585, #ed5353);
+    color: white;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow: 0 3px 10px rgba(237,83,83,0.2);
 }
 
+/* BOTÕES DE AÇÃO */
+
 .btn-excluir {
-    background: #dc3545;
-    padding: 8px;
+    background: linear-gradient(135deg, #ff8585, #e74c63);
+
+    padding: 8px 12px;
     width: auto;
     margin: 0;
+
+    border-radius: 9px;
+}
+
+.btn-excluir:hover {
+    background: linear-gradient(135deg, #ff6868, #d93650);
 }
 
 .btn-editar {
-    background: #17a2b8;
-    padding: 8px;
+    background: linear-gradient(135deg, #45d7e8, #159fc4);
+
+    padding: 8px 12px;
     width: auto;
     margin: 0 5px 0 0;
+
+    border-radius: 9px;
+}
+
+.btn-editar:hover {
+    background: linear-gradient(135deg, #35c9ed, #128bb5);
 }
 
 .acoes {
     display: flex;
     gap: 5px;
+    align-items: center;
 }
+
+/* BARRA DE ROLAGEM */
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #dff7fa;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#51d5ed, #42b8d9);
+    border-radius: 20px;
+}
+
+/* SELEÇÃO */
+
+::selection {
+    background: #54d5e9;
+    color: white;
+}
+
+/* RESPONSIVIDADE */
 
 @media (max-width: 800px) {
     .resumo {
@@ -174,10 +396,22 @@ tr:hover {
     }
 
     .painel {
-        padding: 15px;
+        padding: 16px;
+    }
+
+    .topo {
+        padding: 20px 5%;
     }
 
     .topo h1 {
         font-size: 22px;
+    }
+
+    .card-resumo {
+        padding: 18px;
+    }
+
+    .card-resumo h2 {
+        font-size: 27px;
     }
 }
